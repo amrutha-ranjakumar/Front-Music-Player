@@ -1,0 +1,19 @@
+.video-button {
+    position: relative;
+    width: 2000px; /* Adjust button width */
+    height: 900px; /* Adjust button height */
+    background-image: url('../assets/music7.jpg'); /* Set thumbnail image */
+    background-size: cover;
+    background-position: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+  }
+  
+  /* Add hover effect if desired */
+  .video-button:hover {
+    filter: brightness(90%);
+
+  }
+  
