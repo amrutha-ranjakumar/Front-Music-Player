@@ -109,7 +109,7 @@ console.log(RecentlyArray);
       <div className='d-flex justify-content-center alig-items-center  ' style={{ marginTop: "80px", marginLeft: "100px" }}>
 
         <div class="dropdown">
-          <button class='dropdown-btn' >All</button>
+          <button class='dropdown-btn' >All Music</button>
         </div>
         <div class="dropdown">
           <Link to='/trendingnow'>

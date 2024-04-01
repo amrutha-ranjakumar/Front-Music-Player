@@ -1,42 +1,26 @@
-import React from 'react'
-import './center.css'
-import { Link } from 'react-router-dom'
-import img from '../assets/front1.jpg'
-
+import React from 'react';
+import './center.css';
+import { Link } from 'react-router-dom';
+import img from '../assets/music1.jpg'
+import Header from '../components/Header';
 
 function Center() {
-   
-      
   return (
-<>
-<div className=' d-flex mb-5 mt-5 p-5'></div>
-<div className='d-flex'>
-    <Link to='./sign' style={{ textDecoration: "none", color: "white" }}>
-    <button class="video-button ">
-
-{/* <h1 class='logo'><i class="fa-solid fa-music" style={{ color: "blue",marginLeft:"750px" }}></i> EVER ROCKING</h1> */}
-                
- 
-</button>
-
-    </Link>
-
-
-
-</div>
-
-
-</>
-   
-
-
+    <>
+      <Header/>
+    <div className='d-flex'>
+      <div className='d-flex justify-content-center'>
+        <Link to='./sign' style={{ textDecoration: "none", color: "white" }}>
+          <button className="video-button">
+            <img src={img} alt="Button Image" className="img-fluid" /> {/* Add the image */}
+            {/* Add content or icon inside the button if desired */}
+          </button>
+        </Link>
+      </div>
+    </div>
+    </>
   
-
- 
-    
-    
-  
-  )
+  );
 }
 
-export default Center
+export default Center;

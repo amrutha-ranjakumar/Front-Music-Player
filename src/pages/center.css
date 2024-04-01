@@ -1,19 +1,37 @@
 .video-button {
-    position: relative;
-    width: 2000px; /* Adjust button width */
-    height: 900px; /* Adjust button height */
-    background-image: url('../assets/music7.jpg'); /* Set thumbnail image */
-    background-size: cover;
-    background-position: center;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    display: flex;
-  }
-  
-  /* Add hover effect if desired */
-  .video-button:hover {
-    filter: brightness(90%);
+  width: 100%; /* Adjust button width */
+  height: 100vh; /* Adjust button height relative to viewport height */
+  border: none; /* Remove border */
+  border-radius: 0; /* Remove border radius */
+  outline: none; /* Remove outline */
+  cursor: pointer; /* Set cursor to pointer */
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  transition: all 0.3s ease; /* Add transition for smooth hover effect */
+  overflow: hidden; /* Hide overflow content */
+  position: fixed; /* Position the button fixed on the screen */
+  top: 100px; /* Align the button to the top of the screen */
+  left: 15px; 
+  right:30px;/* Align the button to the left of the screen */
+  z-index: 9999; /* Set a high z-index to ensure the button is above other content */
+}
 
+.video-button img {
+  width: 100%; /* Make the image responsive */
+  height: 100%; /* Make the image cover the entire button */
+  object-fit: cover; /* Cover the entire button area with the image */
+}
+
+/* Add hover effect */
+.video-button:hover {
+  background-color: rgba(0, 86, 179, 0.7); /* Change background color on hover with opacity */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 708px) {
+  .video-button {
+    width: 90%; /* Adjust button width for smaller screens */
+    max-width: 900px; /* Set maximum button width for smaller screens */
   }
-  
+}
