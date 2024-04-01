@@ -9,7 +9,7 @@ import OldSongs from './pages/OldSongs'
 import NewSongs from './pages/NewSongs'
 import TopAlbums from './pages/TopAlbums'
 import { Route, Routes } from 'react-router-dom';
-import Sign2 from './pages/Sign2';
+
 import RecentlyPlayed from './pages/RecentlyPlayed';
 import Center from './pages/Center';
 import { useState } from 'react';

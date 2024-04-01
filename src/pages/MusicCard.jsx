@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FaPlay, FaPause, FaStepBackward, FaStepForward } from 'react-icons/fa';
 import { Card } from 'react-bootstrap';
 import { BASE_URL } from '../services/baseurl';
-import './MusicCard.css';
+
 import { useDispatch } from 'react-redux';
 import { addToRecentlyplayed } from '../Redux/slices/Recentelyplayed';
 

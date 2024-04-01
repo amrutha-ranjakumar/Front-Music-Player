@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import music1 from '../assets/music1.jpg'
 import Form from 'react-bootstrap/Form';
-import "./sign1.css";
+
 import { Button } from 'react-bootstrap'
 import img10 from '../assets/img1.png'
 import img11 from '../assets/COLLECTION_1671425622182395.png'
