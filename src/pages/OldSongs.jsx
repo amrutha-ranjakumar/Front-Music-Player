@@ -56,47 +56,12 @@ console.log(RecentlyArray);
               
               </form>
           </div>
+<div className='d-flex justify-content-center alig-items-center  ' style={{ marginTop: "80px", marginLeft: "100px" }}>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <div className='d-flex justify-content-center alig-items-center  ' style={{ marginTop: "80px", marginLeft: "100px" }}>
-
-<div class="dropdown">
-  <button class='dropdown-btn' >All</button>
+          <div class="dropdown">
+  <Link to='/home'>
+    <button class='dropdown-btn' >All Music</button>
+  </Link>
 </div>
 <div class="dropdown">
   <Link to='/trendingnow'>
@@ -117,45 +82,6 @@ console.log(RecentlyArray);
 </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="wrapper "  >
 {

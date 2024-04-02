@@ -9,7 +9,7 @@ import image7 from '../assets/BANNER7.png'
 import image8 from '../assets/BANNER8.jpg'
 import image9 from '../assets/BANNER9.jpg'
 import image10 from '../assets/BANNRER10.jpg'
-import img10 from '../assets/img1.png'
+
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import { Button } from 'react-bootstrap'
@@ -35,6 +35,7 @@ function Home() {
     console.log("=================searchkey",searchKey);
 //to access data inside store:useSelector hook
 const RecentlyArray = useSelector((state)=>state.RecentlyplayedReducer);
+// const likedArray = useSelector((state)=>state.TopAlbumsReducer)
 console.log("====RecentelyArray for home");
 console.log(RecentlyArray);
 
@@ -131,46 +132,7 @@ console.log(RecentlyArray);
      
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="wrapper "  >
+<div class="wrapper "  >
         {
           allMusic?.length > 0 ?
             allMusic.map((item) => (
@@ -200,12 +162,12 @@ console.log(RecentlyArray);
 
             </Card>
             </Col>
-          <Col className='mt-1 ,ms-3'>
+          <Col className='mt-1 '>
             <Card style={{ width: '18rem'}}>
               <Link to={'/TopAlbums'}>
                 <Card.Img variant="top" src={LikedSongs} />
               </Link>
-              {/* <Badge  style={{fontSize:'30px'}}  bg='' >{RecentlyArray.length}</Badge> */}
+              {/* <Badge  style={{fontSize:'30px'}}  bg='' >{likedArray.length}</Badge> */}
 
 
             </Card>

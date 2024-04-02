@@ -133,7 +133,7 @@ function TrendingNow() {
             </Col>
           </Row>
         </Container>
-        <table className="table container">
+        <table className="table container" >
           <thead>
             <tr>
               <th>#</th>
@@ -154,7 +154,7 @@ function TrendingNow() {
                     <img
                       src={`${BASE_URL}/uploads/${item.image}`}
                       width={'70px'}
-                      height={'100%'}
+                      height={'20%'}
                       onClick={() => handleShow(item)}
                       alt=""
                     />

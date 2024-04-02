@@ -50,7 +50,7 @@ function TopAlbums({music}) {
       </Row>
     
     </Container>
-    <div style={{ marginTop: "-300px" }}>
+    <div style={{ marginTop: "-400px" }}>
       <table className='table container'>
         <thead>
           <tr>
@@ -68,7 +68,7 @@ function TopAlbums({music}) {
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{item.title}</td>
-                <td><img src={`${BASE_URL}/uploads/${item.image}`} width={'70px'} height={'100%'} alt="" /></td>
+                <td><img src={`${BASE_URL}/uploads/${item.image}`} width={'70px'} height={'20%'} alt="" /></td>
                 <td>{item.audio}</td>
                 <td>4:74</td>
                 <td><i className="fa-solid fa-download"></i></td>

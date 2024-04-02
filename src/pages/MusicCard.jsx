@@ -7,6 +7,7 @@ import { BASE_URL } from '../services/baseurl';
 
 import { useDispatch } from 'react-redux';
 import { addToRecentlyplayed } from '../Redux/slices/Recentelyplayed';
+import { addToAlbums } from '../Redux/slices/TopAlbums';
 
 function MusicCard({ music }) {
   const [show, setShow] = useState(false);
@@ -21,12 +22,7 @@ function MusicCard({ music }) {
 
 
 const dispatch = useDispatch()
-
-
-
-
-
-  useEffect(() => {
+useEffect(() => {
     if (isPlaying) {
       audio.play();
     } else {
