@@ -133,7 +133,7 @@ function TrendingNow() {
             </Col>
           </Row>
         </Container>
-        <table className="table container" >
+        <table className="table container" style={{backgroundColor:"black"}} >
           <thead>
             <tr>
               <th>#</th>

@@ -51,7 +51,7 @@ function RecentlyPlayed() {
       </Row>
     
     </Container>
-    <div style={{ marginTop: "-400px" }}>
+    <div style={{ marginTop: "-400px",backgroundColor:"black" }}>
       <table className='table container' >
         <thead>
           <tr>
