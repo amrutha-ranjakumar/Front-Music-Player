@@ -1,17 +1,24 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import LikedSongs from '../assets/liked-songs.png'
-
 import { AllMusicAPI } from '../services/allAPI'
 import { useEffect, useState } from 'react'
 import MusicCard from './MusicCard'
 import { useSelector } from 'react-redux'
-import { Badge } from 'react-bootstrap';
+
 import Header from '../components/Header'
 import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-import recentlyplayed from '../assets/recently-played.png'
+
+import Footer1 from '../components/Footer1'
+import Carousel from 'react-bootstrap/Carousel';
+
+import image1 from '../assets/BANNER1.jpg';
+import image2 from '../assets/BANNER2.jpg';
+import image3 from '../assets/BANNER3.png';
+import image4 from '../assets/BANNER4.png';
+import image5 from '../assets/BANNER5.jpg';
+import image6 from '../assets/BANNER6.png';
+import image7 from '../assets/BANNER7.png';
+import image8 from '../assets/BANNER8.jpg';
+import image9 from '../assets/BANNER9.jpg';
+import image10 from '../assets/BANNRER10.jpg';
 
 function NewSongs() {
   const [searchKey,setSearchKey]=useState("")
@@ -56,6 +63,92 @@ console.log(RecentlyArray);
               
               </form>
           </div>
+         
+      <div>
+        {' '}
+        <Carousel>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image5}
+              alt='News Flash blurred'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image2}
+              alt='First slide'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image3}
+              alt='First slide'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image4}
+              alt='First slide'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image9}
+              alt='First slide'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image6}
+              alt='News Flash blurred'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image1}
+              alt='News Flash blurred'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image8}
+              alt='News Flash blurred'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image7}
+              alt='News Flash blurred'
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ height: '40vh' }}
+              className='d-block w-100 movie'
+              src={image10}
+              alt='News Flash blurred'
+            />
+          </Carousel.Item>
+        </Carousel>
+      </div>
  <div className='d-flex justify-content-center alig-items-center  ' style={{ marginTop: "80px", marginLeft: "100px" }}>
 
           <div class="dropdown">
@@ -99,35 +192,7 @@ console.log(RecentlyArray);
 </div>
 
 
-<Container>
-<Row className=' mt-3 ms-5' >
-  <Col>
-
-
-    <Card style={{ width: '18rem' }}>
-      <Link to='/recentlyplayed'>
-        <Card.Img variant="top" src={recentlyplayed} />
-      
-
-      </Link>
-      {/* <Badge style={{fontSize:'30px'}} bg=''>{RecentlyArray.length}</Badge> */}
-
-    </Card>
-    </Col>
-  <Col className='mt-1 ,ms-3'>
-    <Card style={{ width: '18rem'}}>
-      <Link to={'/TopAlbums'}>
-        <Card.Img variant="top" src={LikedSongs} />
-      </Link>
-      {/* <Badge  style={{fontSize:'30px'}}  bg='' >{RecentlyArray.length}</Badge> */}
-
-
-    </Card>
-  </Col>
-</Row>
-
-</Container>
-
+<Footer1 />
 
 
 </>

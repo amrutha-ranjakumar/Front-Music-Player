@@ -3,32 +3,38 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaPlay, FaPause, FaStepBackward, FaStepForward } from 'react-icons/fa';
 import { Card } from 'react-bootstrap';
-import { BASE_URL } from '../services/baseurl';
-
 import { useDispatch } from 'react-redux';
 import { addToRecentlyplayed } from '../Redux/slices/Recentelyplayed';
-import { addToAlbums } from '../Redux/slices/TopAlbums';
 
-function MusicCard({ music }) {
+import { BASE_URL } from '../services/baseurl';
+import { addToLikedsongs } from '../Redux/slices/Likedsongs';
+import { addToPayments } from '../Redux/slices/Payments';
+ import { Link } from 'react-router-dom';
+import { addTosongDetail } from '../Redux/slices/SongDetailSlice';
+
+function MusicCard({ music}) {
+
+ 
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const [audio] = useState(new Audio(`${BASE_URL}/uploads/${music.audio}`));
-
   const [isPlaying, setIsPlaying] = useState(false);
+
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch()
-useEffect(() => {
+  useEffect(() => {
     if (isPlaying) {
       audio.play();
     } else {
       audio.pause();
     }
-  }, [isPlaying, audio]);
+  }, [isPlaying, audio]); 
 
   useEffect(() => {
     const handleTimeUpdate = () => {
@@ -76,46 +82,42 @@ useEffect(() => {
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
+  
 
-  const playNextSong = () => {
-    // Logic to play the next song
-  };
-
-  const playPreviousSong = () => {
-    // Logic to play the previous song
-  };
+ 
 
   return (
-    
-   
     <>
+ 
    
-   <div >
-   <div className="box">
-        <img className="round" src={`${BASE_URL}/uploads/${music.image}`} height={"200px"} width={"200px"} alt="" />
+      <div className="box box-warning"  >
+        <img className="round" onClick={handleShow}  src={`${BASE_URL}/uploads/${music.image}`} height="170px" width="200px" alt="" />
         <h5 className="mt-2">{music.title}</h5>
-        <h5 className="row mt-4" style={{ marginLeft: "60px" }} ></h5>
+        <h6 className='text-danger'onClick={() => dispatch(addToPayments(music))} >&#8377;{music.rupee}</h6>
+        <h5 className="row mt-4" style={{ marginLeft: "60px" }}></h5>
         <div className="d-flex align-items-center justify-content-between">
-          <Button
-             onClick={()=>dispatch(addToRecentlyplayed(music))}
+          <Button onClick={() => dispatch(addToLikedsongs(music))} variant="outline-danger">
+           
+            <i className="fas fa-heart"></i>
+         
           
-          variant="outline-danger"><i className="fas fa-heart"></i></Button>
+            </Button>
+          <Button  onClick={() => dispatch(addToRecentlyplayed(music))} variant="outline-success">
+            <Link to='./songdetails'onClick={handleShow} >
 
-          <Button 
-          
-          onClick={()=>dispatch(addToRecentlyplayed(music))}
-          variant="outline-success"><i className="fas fa-play ms-1" onClick={handleShow}></i></Button>
+            <i className="fas fa-play ms-1" onClick={() => dispatch(addTosongDetail(music))} ></i>
+            </Link>
+            </Button>
+           
         </div>
       </div>
-   </div>
-     
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} 
-        style={{ width: '100%', maxWidth: '60000px', minWidth:"600px",marginRight: '800%' }} // Set modal width and max width
-      >
-        <Modal.Header closeButton  style={{ width: '100%', maxWidth: '800px'}}>
+      
+
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} style={{ width: '100%', maxWidth: '600px', minWidth: "200px", marginRight: '400%' }}>
+        <Modal.Header closeButton style={{ width: '100%', maxWidth: '800px' }}>
           <Modal.Title>{music.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body  >
+        <Modal.Body>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Card style={{ width: '100%', textAlign: 'center', padding: '20px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)' }}>
               <Card.Img variant="top" src={`${BASE_URL}/uploads/${music.image}`} alt="Album Cover" style={{ width: '90%', margin: 'auto', marginBottom: '20px', height: '350px' }} />
@@ -142,8 +144,8 @@ useEffect(() => {
                   </div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-                  <button onClick={playPreviousSong} style={{ border: 'none', backgroundColor: 'transparent', marginRight: '10px' }}>
-                    <FaStepBackward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: '#ddd', cursor: "pointer" }} />
+                  <button  style={{ border: 'none', backgroundColor: 'transparent', marginRight: '10px' }}>
+                    <FaStepBackward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: 'black', cursor: "pointer" }} />
                   </button>
                   <div
                     onClick={togglePlayPause}
@@ -151,7 +153,7 @@ useEffect(() => {
                       width: '60px',
                       height: '60px',
                       borderRadius: '50%',
-                      backgroundColor: '#ddd',
+                      backgroundColor: 'black',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
@@ -164,18 +166,17 @@ useEffect(() => {
                       <FaPlay style={{ fontSize: '2em', color: '#555' }} />
                     )}
                   </div>
-                  <button onClick={playNextSong} style={{ border: 'none', backgroundColor: 'transparent', marginLeft: '10px' }}>
-                    <FaStepForward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: '#ddd', cursor: "pointer" }} />
+                  <button  style={{ border: 'none', backgroundColor: 'transparent', marginLeft: '10px' }}>
+                    <FaStepForward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: 'black', cursor: "pointer" }} />
                   </button>
                 </div>
               </Card.Body>
             </Card>
-        
           </div>
-          </Modal.Body>
-        </Modal>
-        </>
+        </Modal.Body>
+      </Modal>
+    </>
   )
 }
 
-export default MusicCard
+export default MusicCard;

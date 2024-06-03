@@ -1,40 +1,36 @@
-import React, { useState } from 'react'
-import '../components/Header.css'
-import music from '../assets/music.jpg'
+import React from 'react';
+import '../components/Header.css';
 import { Link } from 'react-router-dom';
-import Home from '../pages/Home';
+import { useSelector } from 'react-redux';
+
 
 function Header() {
-   
-   
+  
+
     return (
-        <>
-
-            <header clas='body1' >
-                <input type="checkbox" name="" id="chk1" />
-                <Link to='/' style={{ textDecoration: "none", color: "white" }} >
-                    <div class="logo"><h4><i class="fa-solid fa-music" style={{ color: "blue", }}></i> EVER ROCKING</h4></div>
+        <header clas='body1'>
+            <input type="checkbox" name="" id="chk1" />
+            <Link to='/' style={{ textDecoration: "none", color: "white" }}>
+                <div class="logo"><h4><i class="fa-solid fa-music" style={{ color: "blue", }}></i> EVER ROCKING</h4></div>
+            </Link><ul>
+               
+                <Link to='/recentlyplayed' style={{ textDecoration: "none", color: "white", marginTop: "23px" }}>
+                    <a className='btn btn-danger rounded le' style={{ fontSize: "20px" }} > Recently</a>
                 </Link>
-            
-                <ul>
-                    <Link to='/'  style={{ textDecoration: "none", color: "white" }}>
-                    <li><a  style={{ fontSize: "25px" ,marginLeft:"550px"}} href="#"><i class="fa-solid fa-user fa-2x"></i>  Login</a></li>
-                    </Link>
-                   
-                    
-                </ul>
-        
-                <div class="menu">
-                    <label for="chk1">
+                <Link to='/likedsongs' style={{ textDecoration: "none", color: "white", marginTop: "23px"}}>
+                <a className='btn btn-danger rounded le ' style={{ fontSize: "20px"}} >Liked</a>
+                </Link>
+                {/* <Link to='/download' style={{ textDecoration: "none", color: "white", marginTop: "23px" }}>
+                <a className='btn btn-danger rounded le' style={{ fontSize: "20px"}} >download</a>
+                </Link> */}
+            </ul>
+              <div class="menu">
+                <label for="chk1">
                     <i class="fa fa-bars"></i>
-                    </label>
-                </div>
-            </header>
-        
-
-        </>
-
-    )
+                </label>
+            </div>
+        </header>
+    );
 }
 
-export default Header
+export default Header;

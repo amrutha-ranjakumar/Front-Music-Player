@@ -23,14 +23,15 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  margin-right: 40px; /* Reduce margin for smaller screens */
+ margin-left: -20px; 
+
 }
 
 /* Dropdown button */
 .dropdown-btn {
   background-color: #0f1444;
   color: rgb(231, 230, 236);
-  padding: 10px 20px;
+  padding: 10px 110px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -40,7 +41,7 @@
 
 /* Dropdown button hover effect */
 .dropdown-btn:hover {
-  background-color: #22c713;
+  background-color: #912234;
 }
 
 /* Dropdown content (hidden by default) */
@@ -88,6 +89,14 @@
     margin-right: 10px; /* Decrease margin for smaller screens */
   }
 }
+
+.home-container {
+  background-image: url('https://i.pinimg.com/736x/0a/c3/86/0ac3865185d80915dce4f7f57ec11919.jpg');
+  background-size:contain;
+  background-position: center;
+  /* Add any additional styling as needed */
+}
+
 
 
 
@@ -155,20 +164,21 @@ flex-wrap: wrap;
  /* width: 100%;
 height: 100vh; */
 height: 200%;
+margin-bottom: 60px;
 
 
 }
 .box {
 width: 300px;
 height: 320px;
-background-color: #131212;
+background-color: #02010e;
 border-radius: 5px;
 padding: 3px;
 margin: 30px;
-  border-color: #041944;
+  border-color: #0c0d0e;
 
 letter-spacing: 1px;
-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+box-shadow: 0 3px 5px rgba(0, 0, 0, 0.959);
 position: relative;
 z-index: 0;
 transition: .5s ease-in-out;
@@ -197,19 +207,19 @@ content: '';
 position: absolute;
 top: 0;
 left: 0;
-background-color: #080808;
+background-color: #020108;
 background-image: linear-gradient(160deg, #0d110f 0%, #0b124d 100%);
 z-index: -2;
 clip-path: circle(18% at 7% 5%);
 transition: .5s ease;
 }
 .box:nth-child(2)::after {
-background-color: #0e0f0f;
+background-color: #03010c;
 background-image: linear-gradient(160deg, #060b14 0%, #142241 100%);
 }
 .box:nth-child(3)::after {
-background-color: #19191a;
-background-image: linear-gradient(160deg, #0a0c13 0%, #0b1647 100%);
+background-color: #04040f;
+background-image: linear-gradient(160deg, #040711 0%, #0b1647 100%);
 }
 .box:hover::after {
 clip-path: circle(100%);
@@ -225,10 +235,10 @@ color: #cc2929;
 }
 .box p {
 font-size: 15px;
-color: #111;
+color: #020211;
 }
 .box:hover p {
-color: #0e0d0d;
+color: #030108;
 }
 .box Button {
 width: 80px;
@@ -244,7 +254,7 @@ text-transform: capitalize;
 cursor: pointer;
 }
 .box:hover Button {
-color: #111;
+color: #0b0113;
 
 }
 .round{
@@ -265,9 +275,9 @@ header .search-box{
 
   /* border: none;
   outline: none; */
-  background:#050505;
+  background:#020108;
   border-radius: 30px;
-  color:rgb(14, 13, 13);
+  color:rgb(2, 1, 14);
   font-size: 16px;
   padding-left:10px;
   padding-right: -90px;
@@ -291,10 +301,20 @@ header .search-box{
   right: 0;
   transform: scale(0.9);
   background: rgb(13, 7, 61);
-  color: #2e2323;
-background-color: #050505;
+  color: #eaeaf1;
+background-color: #efebf3e7;
  
 }
+.shape{
+  border-radius: 100%;
+  width: 300px;
+  height: 250px;
+  
+  
+  
+  }
+
+
 
 
 

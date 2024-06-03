@@ -1,0 +1,11 @@
+@media (max-width: 768px) {
+    .mt-5,
+    .mt-3 {
+      margin-top: 1rem !important;
+    }
+  }
+  
+  .modal-dialog {
+    max-height: 20px; /* Adjust the percentage value as needed */
+  }
+  

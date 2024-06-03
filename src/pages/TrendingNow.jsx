@@ -7,6 +7,8 @@ import { FaPlay, FaPause, FaStepBackward, FaStepForward } from 'react-icons/fa';
 import Header from '../components/Header';
 import trendingnow from '../assets/trending-now-trending-now.webp';
 import { BASE_URL } from '../services/baseurl';
+import Footer1 from '../components/Footer1'
+
 
 function TrendingNow() {
   const [searchKey, setSearchKey] = useState('');
@@ -117,41 +119,49 @@ function TrendingNow() {
       <Header />
       <div className="mb-5 p-5"></div>
       <div className="mb-5 mt-5 p-5">
-        <Link to="/home" style={{ textDecoration: 'none', color: 'white', fontSize: '20px', fontWeight: '600', marginLeft: '10px' }}>
+        <Link to="/home" style={{ textDecoration: 'none', color: 'white', fontSize: '20px', fontWeight: '600', marginLeft: '300px' }}>
           <i className="fa-solid fa-arrow-left"></i> Back To Home
         </Link>
         <Container className=" mb-5 d-flex flex-column align-items-center">
-          <Row className="justify-content-center" >
+          <Row className="justify-content-center"  style={{marginLeft:"-400px"}}>
             <Col xs={12} md={6} className="text-center  mt-5 p-2">
-              <img width={'70%'} src={trendingnow} alt="" />
+              <img width={'60%'} src={trendingnow} alt="" />
             </Col>
-            <Col xs={12} md={6} className="text-center  " style={{marginLeft:"-80px",marginTop:"120px"}}>
-              <h2 style={{marginRight:"-60px"}}>Trending Now</h2>
+            <Col xs={12} md={6} className="text-center  " style={{ marginLeft: "-90px", marginTop: "120px" }}>
+              <h2 style={{ marginRight: "-60px" }}>Trending Now</h2>
               <button className="btn btn-danger mt-5 ms-5">
                 <i className="fa-solid fa-play"></i> Play Songs
               </button>
             </Col>
+            <Col>
+            
+            
+            
+            
+            </Col>
           </Row>
         </Container>
-        <table className="table container" style={{backgroundColor:"black"}} >
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Image</th>
-              <th>Audio</th>
-              <th>Duration</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+
+        <table className="table container" style={{marginLeft:"300px"}} >
+        <thead>
+              <tr>
+                <th style={{width:"800px"}}>#</th>
+                <th style={{width:"900px"}}>Title</th>
+                <th style={{width:"900px"}}>Image</th>
+                <th style={{width:"900px"}}>Audio</th>
+                <th  style={{width:"800px"}}>Duration</th>
+                <th  style={{width:"800px"}}>download</th>
+              </tr>
+            </thead>
           <tbody>
             {allMusic?.length > 0 ? (
               allMusic.map((item, index) => (
                 <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{item.title}</td>
+                  <td style={{backgroundColor:"black",width:"800px"}} >{index + 1}</td>
+                  <td style={{backgroundColor:"black",width:"800px"}} >{item.title}</td>
                   <td>
                     <img
+                   style={{backgroundColor:"black",width:"100px"}}
                       src={`${BASE_URL}/uploads/${item.image}`}
                       width={'70px'}
                       height={'20%'}
@@ -159,9 +169,9 @@ function TrendingNow() {
                       alt=""
                     />
                   </td>
-                  <td>{item.audio}</td>
-                  <td>4:74</td>
-                  <td>
+                  <td style={{backgroundColor:"black",width:"900px"}} >{item.audio}</td>
+                  <td style={{backgroundColor:"black",width:"900px"}} >4:74</td>
+                  <td style={{backgroundColor:"black",width:"900px"}} >
                     <i className="fa-solid fa-download"></i>
                   </td>
                 </tr>
@@ -174,59 +184,59 @@ function TrendingNow() {
           </tbody>
         </table>
       </div>
+
       <Modal
-  show={show}
-  onHide={handleClose}
-  backdrop="static"
-  keyboard={false}
-  centered
-  style={{width:"50%"}}
->
-  <Modal.Header closeButton>
-    <Modal.Title>{music.title}</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
-    <div className="text-center">
-      <Card style={{ width: '100%', maxWidth: '400px', textAlign: 'center', padding: '10px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)', margin: 'auto' }}>
-        <Card.Img variant="top" src={`${BASE_URL}/uploads/${music.image}`} alt="Album Cover" style={{ width: '100%', marginBottom: '20px', maxHeight: '350px', objectFit: 'cover' }} />
-        <Card.Body>
-          <input
-            type="range"
-            value={currentTime}
-            max={duration}
-            onChange={handleSeek}
-            style={{
-              width: '90%',
-              height: '8px',
-              borderRadius: '5px',
-              outline: 'none',
-              backgroundColor: '#ddd',
-              appearance: 'none',
-              marginTop: '10px',
-              cursor: 'pointer',
-            }}
-          />
-          <div style={{ fontSize: '0.8em', marginTop: '5px' }}>
-            {formatTime(currentTime)} / {formatTime(duration)}
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+        style={{ width: "50%" }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>{music.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="text-center">
+            <Card style={{ width: '100%', maxWidth: '400px', textAlign: 'center', padding: '10px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)', margin: 'auto' }}>
+              <Card.Img variant="top" src={`${BASE_URL}/uploads/${music.image}`} alt="Album Cover" style={{ width: '100%', marginBottom: '20px', maxHeight: '350px', objectFit: 'cover' }} />
+              <Card.Body>
+                <input
+                  type="range"
+                  value={currentTime}
+                  max={duration}
+                  onChange={handleSeek}
+                  style={{
+                    width: '90%',
+                    height: '8px',
+                    borderRadius: '5px',
+                    outline: 'none',
+                    backgroundColor: '#ddd',
+                    appearance: 'none',
+                    marginTop: '10px',
+                    cursor: 'pointer',
+                  }}
+                />
+                <div style={{ fontSize: '0.8em', marginTop: '5px' }}>
+                  {formatTime(currentTime)} / {formatTime(duration)}
+                </div>
+                <div className="d-flex justify-content-center align-items-center mt-3">
+                  <button onClick={playPreviousSong} className="btn btn-light me-2">
+                    <FaStepBackward style={{ fontSize: '1.5em' }} />
+                  </button>
+                  <button onClick={togglePlayPause} className="btn btn-light mx-3">
+                    {isPlaying ? <FaPause style={{ fontSize: '1.5em' }} /> : <FaPlay style={{ fontSize: '1.5em' }} />}
+                  </button>
+                  <button onClick={playNextSong} className="btn btn-light ms-2">
+                    <FaStepForward style={{ fontSize: '1.5em' }} />
+                  </button>
+                </div>
+              </Card.Body>
+            </Card>
           </div>
-          <div className="d-flex justify-content-center align-items-center mt-3">
-            <button onClick={playPreviousSong} className="btn btn-light me-2">
-              <FaStepBackward style={{ fontSize: '1.5em' }} />
-            </button>
-            <button onClick={togglePlayPause} className="btn btn-light mx-3">
-              {isPlaying ? <FaPause style={{ fontSize: '1.5em' }} /> : <FaPlay style={{ fontSize: '1.5em' }} />}
-            </button>
-            <button onClick={playNextSong} className="btn btn-light ms-2">
-              <FaStepForward style={{ fontSize: '1.5em' }} />
-            </button>
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
-  </Modal.Body>
-</Modal>
-
-
+        </Modal.Body>
+      </Modal>
+      <Footer1 />
     </>
   );
 }
