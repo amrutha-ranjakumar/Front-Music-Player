@@ -1,158 +1,133 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Modal, Button } from 'react-bootstrap';
 import { FaPlay, FaPause, FaStepBackward, FaStepForward } from 'react-icons/fa';
 import { BASE_URL } from '../services/baseurl';
-import Modal from 'react-bootstrap/Modal';
 import img4 from '../assets/advertisment.jpg';
 import { Link } from 'react-router-dom';
 
 function MusicModal({ music }) {
-
-  const [show, setShow] = useState(true); // Set initially to true to display the modal
+  const [show, setShow] = useState(true); 
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [premium] = useState(new Audio(`${BASE_URL}/uploads/${music.premium}`));
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [isPlayings, setIsPlayings] = useState(false);
-  const [currentTimes, setCurrentTimes] = useState(0);
-  const [durations, setDurations] = useState(0);
-
-  const [premium] = useState(new Audio(`${BASE_URL}/uploads/${music.premium}`));
-
   useEffect(() => {
-    togglePlayPauses(); // Automatically start playing audio when the modal is shown
+    togglePlayPause(); 
   }, []);
 
   useEffect(() => {
-    if (isPlayings) {
+    if (isPlaying) {
       premium.play();
     } else {
       premium.pause();
     }
-  }, [isPlayings, premium]);
+  }, [isPlaying, premium]);
 
   useEffect(() => {
-    const handleTimeUpdates = () => {
-      setCurrentTimes(premium.currentTime);
+    const handleTimeUpdate = () => {
+      setCurrentTime(premium.currentTime);
     };
 
-    const handleLoadedMetadatas = () => {
-      setDurations(premium.duration);
+    const handleLoadedMetadata = () => {
+      setDuration(premium.duration);
     };
 
-    const handleSongEnds = () => {
-      setCurrentTimes(0);
-      setIsPlayings(false);
+    const handleSongEnd = () => {
+      setCurrentTime(0);
+      setIsPlaying(false);
     };
 
-    premium.addEventListener('timeupdate', handleTimeUpdates);
-    premium.addEventListener('loadedmetadata', handleLoadedMetadatas);
-    premium.addEventListener('ended', handleSongEnds);
+    premium.addEventListener('timeupdate', handleTimeUpdate);
+    premium.addEventListener('loadedmetadata', handleLoadedMetadata);
+    premium.addEventListener('ended', handleSongEnd);
 
     return () => {
-      premium.removeEventListener('timeupdate', handleTimeUpdates);
-      premium.removeEventListener('loadedmetadata', handleLoadedMetadatas);
-      premium.removeEventListener('ended', handleSongEnds);
+      premium.removeEventListener('timeupdate', handleTimeUpdate);
+      premium.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      premium.removeEventListener('ended', handleSongEnd);
     };
   }, [premium]);
 
-  const togglePlayPauses = () => {
-    setIsPlayings(!isPlayings);
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
   };
 
-  const handleSeeks = (e) => {
+  const handleSeek = (e) => {
     const newTime = parseFloat(e.target.value);
-    setCurrentTimes(newTime);
+    setCurrentTime(newTime);
     premium.currentTime = newTime;
   };
 
-  const formatTimes = (time) => {
+  const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
   return (
-    <>
-      <div>
-        <Modal 
-          show={show} 
-          onHide={handleClose} 
-          keyboard={false} 
-        >
-          <Modal.Header closeButton style={{ width: '200%', maxWidth: '1200px', backgroundColor: "black", marginTop: "-10px", marginLeft: '-300px' }}>
-          </Modal.Header>
-          <Modal.Body style={{ width: "1000px", marginLeft: '-300px', backgroundColor: "black" }}>
-            <div style={{ alignItems: 'center', backgroundColor: "black" }}>
-              {/* Left side content */}
-              <div style={{ marginRight: '70px', backgroundColor: "black" }}>
-              
-               
-                <Link  to='payments' >
-                <button className='btn btn-danger'>Explore Premium <i class="fa-solid fa-crown" style={{color:"orange"}}></i></button>
-                </Link>
-              </div>
-              {/* Right side content */}
-              <div style={{ flex: 1, width: '100%', backgroundColor: "black" }}>
-                <Card style={{ width: '100%', textAlign: 'center', padding: '20px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)', backgroundColor: "black" }}>
-                  <Card.Img variant="top" src={img4} alt="Advertisement" style={{ width: '60%', margin: 'auto', marginBottom: '20px', height: '300px' }} />
-                  <Card.Body style={{ flex: 1, width: '100%', backgroundColor: "black" }} >
-                    <div style={{ position: 'relative', width: '100%', margin: 'auto', backgroundColor: "black" }}>
-                      <input
-                        type="range"
-                        value={currentTimes}
-                        max={durations}
-                        onChange={handleSeeks}
-                        style={{
-                          width: '100%',
-                          height: '8px',
-                          borderRadius: '5px',
-                          outline: 'none',
-                          backgroundColor: '#ddd',
-                          appearance: 'none',
-                          marginTop: '10px',
-                          cursor: 'pointer'
-                        }}
-                      />
-                      <div style={{ position: 'absolute', top: '-20px', right: '0', fontSize: '0.8em' }}>
-                        {formatTimes(currentTimes)}
-                      </div>
+    <Modal show={show} onHide={handleClose} size="lg" centered>
+      <Modal.Header closeButton className=" text-light"></Modal.Header>
+  
+      <Modal.Body className=" text-light">
+      <hr />
+        <Container fluid>
+          <Row className="mb-4">
+            <Col xs={12} className="text-center">
+              <Link to="payments">
+                <Button variant="danger" className="mb-3">
+                  Explore Premium <i className="fa-solid fa-crown" style={{ color: 'orange' }}></i>
+                </Button>
+              </Link>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col xs={12} md={6} lg={8} className="text-center mb-4">
+              <Card className="text-light">
+                <Card.Img variant="top" src={img4} alt="Advertisement" className="img-fluid" />
+                <Card.Body>
+                  <div className="w-100 mb-3">
+                    <input
+                      type="range"
+                      value={currentTime}
+                      max={duration}
+                      onChange={handleSeek}
+                      className="w-100"
+                      style={{
+                        height: '8px',
+                        borderRadius: '5px',
+                        outline: 'none',
+                        // backgroundColor: 'black',
+                        appearance: 'none',
+                        cursor: 'pointer',
+                      }}
+                    />
+                    <div className="d-flex justify-content-between mt-1">
+                      <span>{formatTime(currentTime)}</span>
+                      <span>{formatTime(duration)}</span>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-                      <button style={{ border: 'none', backgroundColor: 'transparent', marginRight: '10px' }}>
-                        <FaStepBackward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: 'black', cursor: "pointer" }} />
-                      </button>
-                      <div
-                        onClick={togglePlayPauses}
-                        style={{
-                          width: '60px',
-                          height: '60px',
-                          borderRadius: '50%',
-                          backgroundColor: 'black',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        {isPlayings ? (
-                          <FaPause style={{ fontSize: '2em', color: '#555' }} />
-                        ) : (
-                          <FaPlay style={{ fontSize: '2em', color: '#555' }} />
-                        )}
-                      </div>
-                      <button style={{ border: 'none', backgroundColor: 'transparent', marginLeft: '10px' }}>
-                        <FaStepForward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: 'black', cursor: "pointer" }} />
-                      </button>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-      </div>
-    </>
+                  </div>
+                  <div className="d-flex justify-content-center align-items-center">
+                    <Button variant="outline-light" className="mx-2" style={{ fontSize: '1.5em' }} onClick={() => (premium.currentTime -= 10)}>
+                      <FaStepBackward style={{ fontSize: '1.5em', backgroundColor: 'black', }} />
+                    </Button>
+                    <Button variant="outline-light" className="mx-2" style={{ fontSize: '1.5em' }} onClick={togglePlayPause}>
+                      {isPlaying ? <FaPause style={{ fontSize: '2em', backgroundColor: 'black', }} /> : <FaPlay style={{ fontSize: '2em' }} />}
+                    </Button>
+                    <Button variant="outline-light" className="mx-2"style={{ fontSize: '1.5em' }} onClick={() => (premium.currentTime += 10)}>
+                      <FaStepForward style={{ fontSize: '1.5em',backgroundColor:'black' }} />
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </Modal.Body>
+    </Modal>
   );
 }
 

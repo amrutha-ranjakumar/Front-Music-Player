@@ -6,8 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
-import img from '../assets/front6.jpg';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 function Profile() {
   const navigate = useNavigate();
@@ -31,50 +30,41 @@ function Profile() {
 
   const createProfile = async (e) => {
     e.preventDefault();
-  
+
     const { username, email, phoneno, profileimage } = profile;
-  
+
     if (!username || !email || !phoneno || !profileimage) {
       Swal.fire({
-        title: "please fill the form completely",
+        title: "Please fill the form completely",
         showClass: {
-          popup: `
-            animate__animated
-            animate__fadeInUp
-            animate__faster
-          `
+          popup: 'animate__animated animate__fadeInUp animate__faster'
         },
         hideClass: {
-          popup: `
-            animate__animated
-            animate__fadeOutDown
-            animate__faster
-          `
+          popup: 'animate__animated animate__fadeOutDown animate__faster'
         }
       });
       return;
     }
-  
+
     const reqBody = new FormData();
     reqBody.append('username', username);
     reqBody.append('email', email);
     reqBody.append('phoneno', phoneno);
     reqBody.append('profileimage', profileimage);
-  
+
     const reqHeader = {
       "Authorization": `Bearer ${token}`
     };
-  
+
     try {
       const result = await profileAPI(reqBody, reqHeader);
       if (result.status === 200) {
         Swal.fire({
-          title: "PROFILE?",
-          text: "Profile created successfully?",
+          title: "Profile",
+          text: "Profile created successfully",
           icon: "success"
         });
-       
-       
+
         navigate('/home');
       } else {
         let errorMessage = "Failed to create profile";
@@ -88,87 +78,82 @@ function Profile() {
       alert("Error creating profile. Please try again later.");
     }
   };
-  
 
   return (
-    <div className='container mb-5 mt-5 border border-2 border-secondary rounded p-4' style={{ background: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center', color: 'white' }}>
-      <div>
-        <h2>
-          <i className='fa-solid fa-music' style={{ color: 'red', marginLeft: "20px", marginTop: "50px" }}></i> Create Your Profile
-        </h2>
-      </div>
-      <div style={{ marginLeft: "40px", marginTop: "40px", width: "300px" }}>
-        <label htmlFor="projectImageupload">
-          <input
-            onChange={handleFileChange}
-            type="file"
-            style={{ display: "none" }}
-            id='projectImageupload'
+    <div className='container mb-5 mt-5 border border-6 border-warning rounded p-4' >
+      <h2 className='text-center'>
+        <i className='fa-solid fa-music' style={{ color: 'red' }}></i> Create Your Profile
+      </h2>
+      <Row className="justify-content-center mt-4">
+        <Col xs={12} md={6} lg={4} className="text-center">
+          <label htmlFor="projectImageupload">
+            <input
+              onChange={handleFileChange}
+              type="file"
+              style={{ display: "none" }}
+              id='projectImageupload'
+            />
+            <img
+              height={"300px"}
+              width={"100%"}
+              src={preView || "https://static.vecteezy.com/system/resources/previews/020/213/738/original/add-profile-picture-icon-upload-photo-of-social-media-user-vector.jpg"}
+              alt=""
+            />
+          </label>
+        </Col>
+      </Row>
+      <div className='d-flex align-items-center flex-column'>
+        <Form.Group controlId="validationCustom01" className='mb-3' style={{ width: "100%", maxWidth: "650px" }}>
+          <Form.Label>User Name</Form.Label>
+          <Form.Control
+            size='lg'
+            type='text'
+            placeholder='User Name'
+            borderradius='50px'
+            value={profile.username}
+            onChange={(e) => setProfile({ ...profile, username: e.target.value })}
           />
-          <img
-            height={"300px"}
-            width={"100%"}
-            src={preView || "https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_640.png"}
-            marginTop={"40px"}
-            alt=""
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group controlId="validationCustom02" className='mb-3' style={{ width: "100%", maxWidth: "650px" }}>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            size='lg'
+            type='email'
+            placeholder='Email'
+            value={profile.email}
+            onChange={(e) => setProfile({ ...profile, email: e.target.value })}
           />
-        </label>
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group controlId="validationCustom03" className='mb-3' style={{ width: "100%", maxWidth: "650px" }}>
+          <Form.Label>Phone No</Form.Label>
+          <Form.Control
+            size='lg'
+            type='text'
+            placeholder='Phone No'
+            value={profile.phoneno}
+            onChange={(e) => setProfile({ ...profile, phoneno: e.target.value })}
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
       </div>
-      <div style={{ marginLeft: "10px", marginTop: "20px" }}>
-        <div className='d-flex align-items-center flex-column  mb-5'>
-          <Form.Group controlId="validationCustom01" className='mb-3' style={{ width: "650px" }}>
-            <Form.Label>User Name</Form.Label>
-            <Form.Control
-              size='lg'
-              type='text'
-              placeholder='User Name'
-              value={profile.username}
-              onChange={(e) => setProfile({ ...profile, username: e.target.value })}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="validationCustom01" className='mb-3' style={{ width: "650px" }}>
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              size='lg'
-              type='email'
-              placeholder='Email'
-              value={profile.email}
-              onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="validationCustom01" className='mb-3' style={{ width: "650px" }}>
-            <Form.Label>Phone No</Form.Label>
-            <Form.Control
-              size='lg'
-              type='email'
-              placeholder='Phone No'
-              value={profile.phoneno}
-              onChange={(e) => setProfile({ ...profile, phoneno: e.target.value })}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <div>
-            <Container>
-              <Row>
-                <Col>
-                  <button className='btn btn-danger rounded mt-4' style={{ width: "300px" }} onClick={createProfile}>
-                    Create Profile
-                  </button>
-                </Col>
-                <Col>
-                  <Link to='/home'>
-                    <button className='btn btn-danger rounded mt-4' style={{ width: "300px" }}>
-                      Skip
-                    </button>
-                  </Link>
-                </Col>
-              </Row>
-            </Container>
-          </div>
-        </div>
-      </div>
+      <Container className="text-center">
+        <Row>
+          <Col xs={12} md={6} className="mb-3">
+            <button className='btn btn-danger rounded' style={{ width: "100%", maxWidth: "300px" }} onClick={createProfile}>
+              Create Profile
+            </button>
+          </Col>
+          <Col xs={12} md={6}>
+            <Link to='/home'>
+              <button className='btn btn-danger rounded' style={{ width: "100%", maxWidth: "300px" }}>
+                Skip
+              </button>
+            </Link>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

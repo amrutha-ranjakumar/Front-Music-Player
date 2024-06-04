@@ -77,11 +77,11 @@ function MusicModal({ music }) {
 
   return (
     <>
-      <Container fluid style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', marginLeft: "-100px" }}>
+      <Container fluid style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', marginLeft: "240px" }}>
         <Row style={{ flexGrow: 1 }}>
           <Col md={6} style={{ marginTop: "160px" }}>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Card style={{ width: '50%', textAlign: 'center', padding: '20px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)', backgroundColor: "black", marginLeft: "200px" }}>
+              <Card style={{ width: '50%', textAlign: 'center', padding: '20px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)', marginLeft: "200px" }}>
               <Card.Img variant="top" src={`${BASE_URL}/uploads/${music.image}`} alt="Album Cover" style={{ width: '90%', margin: 'auto', marginBottom: '20px', height: '350px' }} />
                 <Card.Body style={{ position: 'relative' }}>
                   <div style={{ position: 'relative', width: '100%', margin: 'auto' }}>
@@ -96,7 +96,7 @@ function MusicModal({ music }) {
                         height: '8px',
                         borderRadius: '5px',
                         outline: 'none',
-                        backgroundColor: '#ddd',
+                        backgroundColor: 'black',
                         appearance: 'none',
                         marginTop: '10px',
                         cursor: 'pointer'
@@ -107,7 +107,7 @@ function MusicModal({ music }) {
                     </div>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-                  <button  style={{ border: 'none', backgroundColor: 'transparent', marginRight: '10px' }}>
+                  <button  style={{ border: 'none', backgroundColor: 'black', marginRight: '10px' }}>
                     <FaStepBackward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: 'black', cursor: "pointer" }} />
                   </button>
                   <div
@@ -124,9 +124,9 @@ function MusicModal({ music }) {
                     }}
                   >
                     {isPlaying ? (
-                      <FaPause style={{ fontSize: '2em', color: '#555' }} />
+                      <FaPause style={{ fontSize: '2em', color: 'black' }} />
                     ) : (
-                      <FaPlay style={{ fontSize: '2em', color: '#555' }} />
+                      <FaPlay style={{ fontSize: '2em', color: 'black' }} />
                     )}
                   </div>
                   <button  style={{ border: 'none', backgroundColor: 'transparent', marginLeft: '10px' }}>

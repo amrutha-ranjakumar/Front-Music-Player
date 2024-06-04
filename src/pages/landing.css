@@ -1,0 +1,91 @@
+.landing-background {
+    position: relative;
+  }
+  
+  .video-button img {
+    max-width:2000px ;
+    height: 1000px;
+    
+   
+  }
+  
+  .landing-title {
+    position: absolute;
+    top: 300px;
+    /* left: 8%; */
+    color: white;
+    font-size: 7rem;
+    text-align: center;
+  }
+  
+  .get-started-button {
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    background-color: #dc3545;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 3.5rem;
+    border: none;
+    border-radius: 40px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .landing-heading {
+    font-size: 3.375rem;
+  }
+  
+  .landing-text {
+    text-align: justify;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .landing-title {
+      font-size: 2rem;
+      top: 15%;
+      right: 5%;
+    }
+  
+    .get-started-button {
+      top: 25%;
+      right: 5%;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+    }
+  
+    .landing-heading {
+      font-size: 2.5rem;
+    }
+  
+    .landing-text {
+      font-size: 0.875rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .landing-title {
+      font-size: 1.5rem;
+      top: 20%;
+      right: 5%;
+    }
+  
+    .get-started-button {
+      top: 30%;
+      right: 5%;
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+  
+    .landing-heading {
+      font-size: 2rem;
+    }
+  
+    .landing-text {
+      font-size: 0.75rem;
+    }
+  }
+  

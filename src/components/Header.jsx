@@ -5,28 +5,28 @@ import { useSelector } from 'react-redux';
 
 
 function Header() {
-  
-
     return (
         <header clas='body1'>
             <input type="checkbox" name="" id="chk1" />
             <Link to='/' style={{ textDecoration: "none", color: "white" }}>
-                <div class="logo"><h4><i class="fa-solid fa-music" style={{ color: "blue", }}></i> EVER ROCKING</h4></div>
-            </Link><ul>
-               
+                 
+                <h1  className='ms-5' style={{ color: "black",fontSize:"60px" }}> <i className="fa-solid fa-music" style={{ color: "black" }}></i> Ever Rocking</h1>
+            </Link>
+            <ul>
                 <Link to='/recentlyplayed' style={{ textDecoration: "none", color: "white", marginTop: "23px" }}>
-                    <a className='btn btn-danger rounded le' style={{ fontSize: "20px" }} > Recently</a>
+                    <a className='btn btn-danger rounded le' style={{ fontSize: "20px" }} ><i class="fa-solid fa-play" style={{color:"blue"}}></i> Recently</a>
                 </Link>
                 <Link to='/likedsongs' style={{ textDecoration: "none", color: "white", marginTop: "23px"}}>
-                <a className='btn btn-danger rounded le ' style={{ fontSize: "20px"}} >Liked</a>
+                    <a className='btn btn-danger rounded le ' style={{ fontSize: "20px"}} ><i class="fa-solid fa-heart" style={{color:"blue"}} ></i> Liked</a>
                 </Link>
-                {/* <Link to='/download' style={{ textDecoration: "none", color: "white", marginTop: "23px" }}>
-                <a className='btn btn-danger rounded le' style={{ fontSize: "20px"}} >download</a>
-                </Link> */}
+                <Link to='/home/songdetails' style={{ textDecoration: "none", color: "white", marginTop: "23px"}}>
+                    <a className='btn btn-danger rounded le ' style={{ fontSize: "20px"}} ><i className="fa-solid fa-music" style={{ color: "blue" }}></i> Details</a>
+                </Link>
+              
             </ul>
-              <div class="menu">
-                <label for="chk1">
-                    <i class="fa fa-bars"></i>
+            <div className="menu">
+                <label htmlFor="chk1">
+                    <i className="fa fa-bars"></i>
                 </label>
             </div>
         </header>

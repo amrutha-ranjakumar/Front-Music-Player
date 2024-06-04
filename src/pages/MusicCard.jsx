@@ -91,18 +91,18 @@ function MusicCard({ music}) {
  
    
       <div className="box box-warning"  >
-        <img className="round" onClick={handleShow}  src={`${BASE_URL}/uploads/${music.image}`} height="170px" width="200px" alt="" />
+        <img className="round" onClick={handleShow}  src={`${BASE_URL}/uploads/${music.image}`} height="170px" width="300px" alt="" />
         <h5 className="mt-2">{music.title}</h5>
         <h6 className='text-danger'onClick={() => dispatch(addToPayments(music))} >&#8377;{music.rupee}</h6>
         <h5 className="row mt-4" style={{ marginLeft: "60px" }}></h5>
-        <div className="d-flex align-items-center justify-content-between">
-          <Button onClick={() => dispatch(addToLikedsongs(music))} variant="outline-danger">
+        <div className="d-flex align-items-center justify-content-between ">
+          <Button onClick={() => dispatch(addToLikedsongs(music))} variant="outline-">
            
             <i className="fas fa-heart"></i>
          
           
             </Button>
-          <Button  onClick={() => dispatch(addToRecentlyplayed(music))} variant="outline-success">
+          <Button  onClick={() => dispatch(addToRecentlyplayed(music))} variant="outline-primary">
             <Link to='./songdetails'onClick={handleShow} >
 
             <i className="fas fa-play ms-1" onClick={() => dispatch(addTosongDetail(music))} ></i>
@@ -113,7 +113,7 @@ function MusicCard({ music}) {
       </div>
       
 
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} style={{ width: '100%', maxWidth: '600px', minWidth: "200px", marginRight: '400%' }}>
+      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} style={{ width: '100%', maxWidth: '1900px', minWidth: "200px" }}>
         <Modal.Header closeButton style={{ width: '100%', maxWidth: '800px' }}>
           <Modal.Title>{music.title}</Modal.Title>
         </Modal.Header>
@@ -133,7 +133,7 @@ function MusicCard({ music}) {
                       height: '8px',
                       borderRadius: '5px',
                       outline: 'none',
-                      backgroundColor: '#ddd',
+                      backgroundColor: 'black',
                       appearance: 'none',
                       marginTop: '10px',
                       cursor: 'pointer'

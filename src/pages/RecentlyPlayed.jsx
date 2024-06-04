@@ -1,5 +1,3 @@
-// LikedSongs.js
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
@@ -36,40 +34,41 @@ function LikedSongs() {
 
       <Container className='mt-5 mb-5'>
         <Row>
-          <Col xs={12} md={6}>
-            <img className='ms-5'
-              width={'70%'}
+          <Col xs={12} md={4}>
+            <img className='ms-5 img-fluid'
               src={likedsongs}
               alt="Recently Played" />
           </Col>
           <Col xs={12} md={6} className="text-center">
-            <h1 style={{ marginTop: "20px"}}> Recentlyplay Songs</h1>
+            <h1 style={{ marginTop: "50px" ,marginLeft:"40px"}}> Recently Played Songs</h1>
             <button className='btn btn-danger rounded mt-4' style={{ width:"200px" }}><i className="fa-solid fa-play"></i> Play Songs</button>
           </Col>
         </Row>
       </Container>
-      <div className="table-responsive p-5">
-        <table className='table container'>
-        <thead>
-              <tr>
-                <th style={{width:"800px"}}>#</th>
-                <th style={{width:"900px"}}>Title</th>
-                <th style={{width:"900px"}}>Image</th>
-                <th style={{width:"900px"}}>Audio</th>
-                <th  style={{width:"800px"}}>Duration</th>
-                <th  style={{width:"800px"}}>download</th>
-              </tr>
-            </thead>
+
+      
+      <div className="table-responsive ms-5">
+        <table className='table'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Image</th>
+              <th>Audio</th>
+              <th>Duration</th>
+              <th>Download</th>
+            </tr>
+          </thead>
           <tbody>
             {RecentlyArray?.length > 0 ? (
-             RecentlyArray.map((item, index) => (
+              RecentlyArray.map((item, index) => (
                 <tr key={index}>
-                  <td style={{width:"1200px"}}>{index + 1}</td>
-                  <td style={{width:"1200px"}}>{item.title}</td>
-                  <td style={{width:"1200px"}}><img src={`${BASE_URL}/uploads/${item.image}`} width={'50px'} height={'50px'} alt="" /></td>
-                  <td style={{width:"1200px"}}>{item.audio}</td>
-                  <td style={{width:"1200px"}}>4:74</td>
-                  <td style={{width:"1200px"}}>
+                  <td>{index + 1}</td>
+                  <td>{item.title}</td>
+                  <td><img src={`${BASE_URL}/uploads/${item.image}`} width={'60px'} height={'50px'} alt="" /></td>
+                  <td>{item.audio}</td>
+                  <td>4:74</td>
+                  <td>
                     <button className="btn btn-primary" onClick={() => handleDownload(item.audio, item.title, item.image)}>
                       <i className="fa-solid fa-download"></i> Download
                     </button>
@@ -85,14 +84,6 @@ function LikedSongs() {
           </tbody>
         </table>
       </div>
-      <hr />
-      <hr />
-     <hr />
-     <hr />
-     <hr />
-     <hr />
-     <hr /><hr />
-
       <Download downloadedSongs={downloadedSongs} /> {/* Pass downloaded songs as props */}
       <Footer1 />
     </>

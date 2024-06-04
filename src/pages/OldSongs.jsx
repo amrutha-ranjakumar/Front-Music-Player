@@ -56,28 +56,13 @@ function NewSongs() {
     <>
       <Header />
 
-      <div className='mb-5 mt-5 p-5'></div>
-      <div class="search-box">
-        <form >
-          <input type="text" className="form-control" id="srch" placeholder="Search"
-            onChange={(e) => setSearchKey(e.target.value)}
-          />
-          <button type="submit"><i class="fa fa-search"></i></button>
-
-        </form>
-      </div>
+      <div className='mb-5  p-5'></div>
     
-      <div>
+    
+      <div className='mt-5'>
         {' '}
         <Carousel>
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image5}
-              alt='News Flash blurred'
-            />
-          </Carousel.Item>
+        
           <Carousel.Item>
             <img
               style={{ height: '40vh' }}
@@ -86,14 +71,7 @@ function NewSongs() {
               alt='First slide'
             />
           </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image3}
-              alt='First slide'
-            />
-          </Carousel.Item>
+        
           <Carousel.Item>
             <img
               style={{ height: '40vh' }}
@@ -126,14 +104,7 @@ function NewSongs() {
               alt='News Flash blurred'
             />
           </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image8}
-              alt='News Flash blurred'
-            />
-          </Carousel.Item>
+        
           <Carousel.Item>
             <img
               style={{ height: '40vh' }}
@@ -142,56 +113,53 @@ function NewSongs() {
               alt='News Flash blurred'
             />
           </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image10}
-              alt='News Flash blurred'
-            />
-          </Carousel.Item>
+        
         </Carousel>
       </div>
-      <div className='d-flex justify-content-center alig-items-center  ' style={{ marginTop: "80px", marginLeft: "100px" }}>
+      <div className="dropdown-container mt-5">
+                <div className="dropdown">
+                <Link to='/home'>
+                        <button className="dropdown-btn">All Songs</button>
+                    </Link>
+                </div>
+                <div className="dropdown">
+                    <Link to='/trendingnow'>
+                        <button className="dropdown-btn">Trending Now</button>
+                    </Link>
+                </div>
+                <div className="dropdown">
+                    <Link to='/oldsongs'>
+                        <button className="dropdown-btn">Old songs</button>
+                    </Link>
+                </div>
+                <div className="dropdown">
+                    <Link to='/newsongs'>
+                        <button className="dropdown-btn">New songs</button>
+                    </Link>
+                </div>
+                <div class="search-box mb-3">
+        <form >
+          <input type="text" className="form-control" id="srch" placeholder="Search"
+            onChange={(e) => setSearchKey(e.target.value)}
+            style={{width:"700px"}}
+          />
+          {/* <button type="submit"><i class="fa fa-search"></i></button> */}
 
-        <div class="dropdown">
-          <Link to='/home'>
-            <button class='dropdown-btn' >All Music</button>
-          </Link>
-        </div>
-        <div class="dropdown">
-          <Link to='/trendingnow'>
-            <button class='dropdown-btn' >Trending Now</button>
-          </Link>
-        </div>
-
-        <div class="dropdown">
-          <Link to='/oldsongs'>
-            <button class='dropdown-btn' >Old songs</button>
-          </Link>
-        </div>
-
-        <div class="dropdown">
-          <Link to='/newsongs'>
-            <button class='dropdown-btn' >New songs</button>
-          </Link>
-        </div>
-
+        </form>
       </div>
+            </div>
 
-      <div class="wrapper "  >
-        {
-          allMusic?.length > 0 ?
-            allMusic.map((item) => (
-              <>
+         
 
-                <MusicCard music={item} />
-              </>
-            )) :
-            <p style={{ marginRight: "230px" }} className='text-white mt-5 '>no music apploaded yet</p>
-        }
-
-      </div>
+            <div className="music-wrapper">
+                {allMusic?.length > 0 ? (
+                    allMusic.map((item) => (
+                        <MusicCard key={item.id} music={item} />
+                    ))
+                ) : (
+                    <p className="no-music">No music uploaded yet</p>
+                )}
+            </div>
 
 
 

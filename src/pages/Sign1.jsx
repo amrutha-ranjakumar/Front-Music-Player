@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { loginAPI, registerAPI } from '../services/allAPI';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import img from '../assets/front6.jpg';
+// import img from '../assets/front6.jpg';
 import Swal from 'sweetalert2'
 
 function Sign1({ register }) {
@@ -82,24 +82,25 @@ function Sign1({ register }) {
 
   return (
     <>
-      <div style={{ background: `url(${img})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', color: 'white' }}>
+      <div style={{  backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', color: 'white' }}>
         <div className='mb-5 mt-2 p-1'></div>
         <div className='d-flex justify-content-center align-items-center' style={{ minHeight: '90vh' }}>
-          <div className='w-75 container'>
-            <div className='card bg-black p-5 mt-3'>
+          <div className='w-100 container'>
+            <div className='card card-5 border boder-5 p-5 mt-3'>
               <div className='row align-items-center'>
                 <div className='col-lg-6 col-md-6 p-5'>
-                  <img src={music1} alt='' width={'80%'} style={{ borderRadius: '10px' }} />
+                  <img src='https://i.pinimg.com/564x/a1/a9/3e/a1a93ed20a5f0ab9fbb36d8269572c40.jpg'alt='' width={'100%'} height={'700px'} style={{ borderRadius: '10%' }} />
                 </div>
                 <div className='col-lg-6 col-md-6 p-3'>
                   <div className='d-flex align-items-center flex-column'>
-                    <h2>
+                    <h2 style={{ color: 'blue' }}>
                       <i className='fa-solid fa-music' style={{ color: 'blue' }}></i> Ever Rocking
                     </h2>
-                    <h5>{registerForm ? 'Sign Up Your Account' : 'Sign Into Your Account'}</h5>
+                    <h5 style={{ color: 'blue' }}>{registerForm ? 'Sign Up Your Account' : 'Sign Into Your Account'}</h5>
                     <br />
-                    <Form className='w-100' >
+                    <Form className='w-100'  >
                       {registerForm && (
+                    
                         <Form.Group controlId='formUsername' className='mb-3 '>
                           <Form.Label className='text-primary'>User Name</Form.Label>
                           <Form.Control

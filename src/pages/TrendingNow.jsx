@@ -9,13 +9,12 @@ import trendingnow from '../assets/trending-now-trending-now.webp';
 import { BASE_URL } from '../services/baseurl';
 import Footer1 from '../components/Footer1'
 
-
 function TrendingNow() {
   const [searchKey, setSearchKey] = useState('');
   const [allMusic, setAllMusic] = useState([]);
   const RecentlyArray = useSelector((state) => state.RecentlyplayedReducer);
   const [show, setShow] = useState(false);
-  const [audio] = useState(new Audio()); // Initialize audio object
+  const [audio] = useState(new Audio());
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -43,9 +42,7 @@ function TrendingNow() {
     getAllMusic();
   }, [searchKey]);
 
-  // Audio player functions
   useEffect(() => {
-    // Set audio source when music changes
     if (music.audio) {
       audio.src = `${BASE_URL}/uploads/${music.audio}`;
     }
@@ -53,9 +50,9 @@ function TrendingNow() {
 
   useEffect(() => {
     if (isPlaying) {
-      audio.play(); // Start playing audio
+      audio.play();
     } else {
-      audio.pause(); // Pause audio
+      audio.pause();
     }
   }, [isPlaying, audio]);
 
@@ -86,7 +83,7 @@ function TrendingNow() {
 
   useEffect(() => {
     if (show) {
-      setIsPlaying(true); // Start playing when modal is shown
+      setIsPlaying(true);
     }
   }, [show]);
 
@@ -106,83 +103,75 @@ function TrendingNow() {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
-  const playNextSong = () => {
-    // Logic to play the next song
-  };
-
-  const playPreviousSong = () => {
-    // Logic to play the previous song
-  };
+ 
 
   return (
     <>
       <Header />
       <div className="mb-5 p-5"></div>
       <div className="mb-5 mt-5 p-5">
-        <Link to="/home" style={{ textDecoration: 'none', color: 'white', fontSize: '20px', fontWeight: '600', marginLeft: '300px' }}>
-          <i className="fa-solid fa-arrow-left"></i> Back To Home
+        <Link to="/home" className="text-white fs-5 fw-bold ms-md-5 ms-3">
+          <i className="fa-solid fa-arrow-left me-2"></i> Back To Home
         </Link>
-        <Container className=" mb-5 d-flex flex-column align-items-center">
-          <Row className="justify-content-center"  style={{marginLeft:"-400px"}}>
-            <Col xs={12} md={6} className="text-center  mt-5 p-2">
-              <img width={'60%'} src={trendingnow} alt="" />
+        <Container className="mb-5 d-flex flex-column align-items-center">
+          <Row className="justify-content-center">
+            <Col xs={12} md={4} className="text-center mt-5 p-2">
+              <img className="img-fluid" src={trendingnow} alt="Trending Now" />
             </Col>
-            <Col xs={12} md={6} className="text-center  " style={{ marginLeft: "-90px", marginTop: "120px" }}>
-              <h2 style={{ marginRight: "-60px" }}>Trending Now</h2>
-              <button className="btn btn-danger mt-5 ms-5">
-                <i className="fa-solid fa-play"></i> Play Songs
+            <Col xs={12} md={5} className="text-center " style={{marginTop:"200px"}}>
+              <h1>Trending Now</h1>
+              <button className="btn btn-danger mt-3">
+                <i className="fa-solid fa-play me-2"></i> Play Songs
               </button>
-            </Col>
-            <Col>
-            
-            
-            
-            
             </Col>
           </Row>
         </Container>
 
-        <table className="table container" style={{marginLeft:"300px"}} >
-        <thead>
-              <tr>
-                <th style={{width:"800px"}}>#</th>
-                <th style={{width:"900px"}}>Title</th>
-                <th style={{width:"900px"}}>Image</th>
-                <th style={{width:"900px"}}>Audio</th>
-                <th  style={{width:"800px"}}>Duration</th>
-                <th  style={{width:"800px"}}>download</th>
-              </tr>
-            </thead>
+        <Container className="table-responsive">
+        
+
+
+
+        </Container>
+
+
+        <div className="table-responsive">
+        <table className='table'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Image</th>
+              <th>Audio</th>
+              <th>Duration</th>
+              <th>Download</th>
+            </tr>
+          </thead>
           <tbody>
             {allMusic?.length > 0 ? (
               allMusic.map((item, index) => (
                 <tr key={index}>
-                  <td style={{backgroundColor:"black",width:"800px"}} >{index + 1}</td>
-                  <td style={{backgroundColor:"black",width:"800px"}} >{item.title}</td>
+                  <td>{index + 1}</td>
+                  <td>{item.title}</td>
+                  <td><img src={`${BASE_URL}/uploads/${item.image}`} width={'100px'} height={'100px'} alt="" onClick={() => handleShow(item)}  /></td>
+                  <td>{item.audio}</td>
+                  <td>4:74</td>
                   <td>
-                    <img
-                   style={{backgroundColor:"black",width:"100px"}}
-                      src={`${BASE_URL}/uploads/${item.image}`}
-                      width={'70px'}
-                      height={'20%'}
-                      onClick={() => handleShow(item)}
-                      alt=""
-                    />
-                  </td>
-                  <td style={{backgroundColor:"black",width:"900px"}} >{item.audio}</td>
-                  <td style={{backgroundColor:"black",width:"900px"}} >4:74</td>
-                  <td style={{backgroundColor:"black",width:"900px"}} >
-                    <i className="fa-solid fa-download"></i>
+                    <button className="btn btn-primary" >
+                      <i className="fa-solid fa-download"></i> Download
+                    </button>
+                
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="6">No data available</td>
+                <td colSpan="6">No items in Recently played</td>
               </tr>
             )}
           </tbody>
         </table>
+      </div>
       </div>
 
       <Modal
@@ -191,44 +180,34 @@ function TrendingNow() {
         backdrop="static"
         keyboard={false}
         centered
-        style={{ width: "50%" }}
       >
         <Modal.Header closeButton>
           <Modal.Title>{music.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="text-center">
-            <Card style={{ width: '100%', maxWidth: '400px', textAlign: 'center', padding: '10px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)', margin: 'auto' }}>
-              <Card.Img variant="top" src={`${BASE_URL}/uploads/${music.image}`} alt="Album Cover" style={{ width: '100%', marginBottom: '20px', maxHeight: '350px', objectFit: 'cover' }} />
+            <Card className="mx-auto" style={{ width: '100%', maxWidth: '400px', padding: '10px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)' }}>
+              <Card.Img variant="top" src={`${BASE_URL}/uploads/${music.image}`} alt="Album Cover" className="img-fluid mb-3" style={{ maxHeight: '350px', objectFit: 'cover' }} />
               <Card.Body>
                 <input
                   type="range"
                   value={currentTime}
                   max={duration}
                   onChange={handleSeek}
-                  style={{
-                    width: '90%',
-                    height: '8px',
-                    borderRadius: '5px',
-                    outline: 'none',
-                    backgroundColor: '#ddd',
-                    appearance: 'none',
-                    marginTop: '10px',
-                    cursor: 'pointer',
-                  }}
+                  className="w-100"
                 />
-                <div style={{ fontSize: '0.8em', marginTop: '5px' }}>
+                <div className="mt-2">
                   {formatTime(currentTime)} / {formatTime(duration)}
                 </div>
                 <div className="d-flex justify-content-center align-items-center mt-3">
-                  <button onClick={playPreviousSong} className="btn btn-light me-2">
-                    <FaStepBackward style={{ fontSize: '1.5em' }} />
+                  <button  className="btn btn-light me-2">
+                    <FaStepBackward className="fs-4" />
                   </button>
                   <button onClick={togglePlayPause} className="btn btn-light mx-3">
-                    {isPlaying ? <FaPause style={{ fontSize: '1.5em' }} /> : <FaPlay style={{ fontSize: '1.5em' }} />}
+                    {isPlaying ? <FaPause className="fs-4" /> : <FaPlay className="fs-4" />}
                   </button>
-                  <button onClick={playNextSong} className="btn btn-light ms-2">
-                    <FaStepForward style={{ fontSize: '1.5em' }} />
+                  <button  className="btn btn-light ms-2">
+                    <FaStepForward className="fs-4" />
                   </button>
                 </div>
               </Card.Body>
