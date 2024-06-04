@@ -40,7 +40,7 @@ function Landing() {
                 className='img-fluid' 
                 style={{ 
                   maxWidth: '100%', 
-                  height: 'auto' 
+                  height: '700px' 
                 }} 
               />
               <h1 className='landing-title'>

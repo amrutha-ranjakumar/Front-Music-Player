@@ -68,7 +68,7 @@ function SongDetails({ music }) {
           ))
         ) : (
           <div>
-            <img style={{ width: "400px", borderRadius: "30%", marginLeft: "450px" }} src="https://i.pinimg.com/564x/ea/37/ea/ea37ea689a2f2a928dd88026cebe8615.jpg" alt="" />
+            <img style={{ width: "400px", borderRadius: "30%", marginLeft: "200px" }} src="https://i.pinimg.com/564x/ea/37/ea/ea37ea689a2f2a928dd88026cebe8615.jpg" alt="" />
             <p className="text-center">No song details found</p>
           </div>
         )}
