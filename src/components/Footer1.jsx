@@ -30,7 +30,7 @@ function Footer1() {
                 A music player is a tool for playing audio files. It offers features like organizing playlists, adjusting volume, and displaying album art, enhancing the experience of enjoying your favorite tunes.
               </p>
             </Col>
-            <Col md={2} className="text-center text-md-left mt-4 mt-md-0 ">
+            <Col md={2} className="text-center text-md-left mt-4 mt-md-0  ">
               <h3 style={{ marginTop: '60px' }} className='text-black'>Links</h3>
               <div className="links ">
                 <Link to="/sign" target="_blank">Sign</Link>

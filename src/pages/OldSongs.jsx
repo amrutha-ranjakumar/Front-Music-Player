@@ -1,16 +1,12 @@
-
-
-import { AllMusicAPI } from '../services/allAPI'
-import { useEffect, useState } from 'react'
-import MusicCard from './MusicCard'
-import { useSelector } from 'react-redux'
-
-import Header from '../components/Header'
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Footer1 from '../components/Footer1'
-
-
 import Carousel from 'react-bootstrap/Carousel';
+
+import { AllMusicAPI } from '../services/allAPI';
+import MusicCard from './MusicCard';
+import Header from '../components/Header';
+import Footer1 from '../components/Footer1';
 
 import image1 from '../assets/BANNER1.jpg';
 import image2 from '../assets/BANNER2.jpg';
@@ -24,151 +20,87 @@ import image9 from '../assets/BANNER9.jpg';
 import image10 from '../assets/BANNRER10.jpg';
 
 function NewSongs() {
-  const [searchKey, setSearchKey] = useState("")
-  console.log("search key", searchKey);
-  console.log("=================searchkey", searchKey);
-  //to access data inside store:useSelector hook
+  const [searchKey, setSearchKey] = useState('');
   const RecentlyArray = useSelector((state) => state.RecentlyplayedReducer);
-  console.log("====RecentelyArray for home");
-  console.log(RecentlyArray);
 
-
-  const [allMusic, setallMusic] = useState([])
+  const [allMusic, setAllMusic] = useState([]);
+  
   const getAllMusic = async () => {
-    if (sessionStorage.getItem("token")) {
-      const token = sessionStorage.getItem("token")
+    if (sessionStorage.getItem('token')) {
+      const token = sessionStorage.getItem('token');
       const reqHeader = {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-      const result = await AllMusicAPI(searchKey, reqHeader)
-      console.log("result for all music");
-      console.log(result);
-      setallMusic(result.data)
-
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      };
+      const result = await AllMusicAPI(searchKey, reqHeader);
+      setAllMusic(result.data);
     }
-  }
+  };
+
   useEffect(() => {
     getAllMusic();
-  }, [searchKey])
+  }, [searchKey]);
 
   return (
     <>
       <Header />
+      <div className="mb-5 p-5"></div>
 
-      <div className='mb-5  p-5'></div>
-    
-    
-      <div className='mt-5'>
-        {' '}
+      <div className="mt-5">
         <Carousel>
-        
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image2}
-              alt='First slide'
-            />
-          </Carousel.Item>
-        
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image4}
-              alt='First slide'
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image9}
-              alt='First slide'
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image6}
-              alt='News Flash blurred'
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image1}
-              alt='News Flash blurred'
-            />
-          </Carousel.Item>
-        
-          <Carousel.Item>
-            <img
-              style={{ height: '40vh' }}
-              className='d-block w-100 movie'
-              src={image7}
-              alt='News Flash blurred'
-            />
-          </Carousel.Item>
-        
+          {[image1, image2, image3, image4, image5, image6, image7, image8, image9, image10].map((image, index) => (
+            <Carousel.Item key={index}>
+              <img style={{ height: '40vh' }} className="d-block w-100" src={image} alt={`Slide ${index + 1}`} />
+            </Carousel.Item>
+          ))}
         </Carousel>
       </div>
-      <div className="dropdown-container mt-5">
-                <div className="dropdown">
-                <Link to='/home'>
-                        <button className="dropdown-btn">All Songs</button>
-                    </Link>
-                </div>
-                <div className="dropdown">
-                    <Link to='/trendingnow'>
-                        <button className="dropdown-btn">Trending Now</button>
-                    </Link>
-                </div>
-                <div className="dropdown">
-                    <Link to='/oldsongs'>
-                        <button className="dropdown-btn">Old songs</button>
-                    </Link>
-                </div>
-                <div className="dropdown">
-                    <Link to='/newsongs'>
-                        <button className="dropdown-btn">New songs</button>
-                    </Link>
-                </div>
-                <div class="search-box mb-3">
-        <form >
-          <input type="text" className="form-control" id="srch" placeholder="Search"
-            onChange={(e) => setSearchKey(e.target.value)}
-            style={{width:"700px"}}
-          />
-          {/* <button type="submit"><i class="fa fa-search"></i></button> */}
 
+      <div className="dropdown-container mt-5 d-flex flex-wrap justify-content-center">
+        <Link to="/home" className="dropdown mx-2">
+          <button className="dropdown-btn">All Songs</button>
+        </Link>
+        <Link to="/trendingnow" className="dropdown mx-2">
+          <button className="dropdown-btn">Trending Now</button>
+        </Link>
+        <Link to="/oldsongs" className="dropdown mx-2">
+          <button className="dropdown-btn">Old Songs</button>
+        </Link>
+        <Link to="/newsongs" className="dropdown mx-2">
+          <button className="dropdown-btn">New Songs</button>
+        </Link>
+      </div>
+
+      <div className="search-box mb-3 d-flex justify-content-center">
+        <form className="w-100 d-flex justify-content-center">
+          <input
+            type="text"
+            className="form-control"
+            id="srch"
+            placeholder="Search"
+            onChange={(e) => setSearchKey(e.target.value)}
+            style={{ width: '100%', maxWidth: '700px' }}
+          />
         </form>
       </div>
-            </div>
 
-         
-
-            <div className="music-wrapper">
-                {allMusic?.length > 0 ? (
-                    allMusic.map((item) => (
-                        <MusicCard key={item.id} music={item} />
-                    ))
-                ) : (
-                    <p className="no-music">No music uploaded yet</p>
-                )}
-            </div>
-
-
-
+      <div className="music-wrapper container">
+        <div className="row">
+          {allMusic?.length > 0 ? (
+            allMusic.map((item) => (
+              <div key={item.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <MusicCard music={item} />
+              </div>
+            ))
+          ) : (
+            <p className="no-music col-12 text-center">No music uploaded yet</p>
+          )}
+        </div>
+      </div>
 
       <Footer1 />
-
     </>
-
-  )
+  );
 }
 
-export default NewSongs
+export default NewSongs;

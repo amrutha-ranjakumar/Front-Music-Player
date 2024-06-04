@@ -46,16 +46,15 @@ function Home() {
         <div className="home-container">
             <Header />
             <div className="spacer"></div>
-            <Container style={{marginTop:"100px"}}>
+            <Container style={{ marginTop: "100px" }}>
                 {userprofile?.length > 0 ? (
                     userprofile.map((item) => (
                         <Row key={item.userId} className="profile-row">
                             <Col xs={12} md={3} className="text-center">
-                                <img src={`${BASE_URL}/uploads/${item.profileimage}`} className='profile-image' alt="" style={{height:"300px",width:"300px"}} />
+                                <img src={`${BASE_URL}/uploads/${item.profileimage}`} className='profile-image' alt="" />
                             </Col>
                             <Col xs={12} md={7} className="profile-details">
-                               
-                                <h5 style={{fontSize:"80px"}} >{item.username}</h5>
+                                <h5 className="profile-username">{item.username}</h5>
                                 <h4>{item.email}</h4>
                             </Col>
                         </Row>
@@ -66,7 +65,7 @@ function Home() {
             </Container>
             <div className="dropdown-container">
                 <div className="dropdown">
-                    <button  className="dropdown-btn">All Music</button>
+                    <button className="dropdown-btn">All Music</button>
                 </div>
                 <div className="dropdown">
                     <Link to='/trendingnow'>
@@ -90,12 +89,10 @@ function Home() {
                         <MusicCard key={item.id} music={item} />
                     ))
                 ) : (
-
-                    <div>
-                    <img style={{ width: "400px", borderRadius: "30%", marginLeft: "-10px" }} src="https://i.pinimg.com/564x/ea/37/ea/ea37ea689a2f2a928dd88026cebe8615.jpg" alt="" />
-                    <p className="text-center">No music uploaded yet</p>
-                  </div>
-                    
+                    <div className="no-music">
+                        <img src="https://i.pinimg.com/564x/ea/37/ea/ea37ea689a2f2a928dd88026cebe8615.jpg" alt="" />
+                        <p>No music uploaded yet</p>
+                    </div>
                 )}
             </div>
             <Footer1 />

@@ -1,9 +1,7 @@
 .home-container {
   background-position: center;
-
+  color: white;
 }
-
-
 
 .spacer {
   height: 5rem; /* Adjust as needed */
@@ -16,7 +14,7 @@
 .profile-image {
   border-radius: 50%;
   width: 200px;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -26,13 +24,16 @@
   justify-content: center;
 }
 
+.profile-username {
+  font-size: 2rem;
+}
+
 .dropdown-container {
   display: flex;
- 
-  margin-left: 200px;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
- 
+  gap: 1rem;
+  margin: 5rem 0;
 }
 
 .dropdown {
@@ -47,7 +48,7 @@
   border: none;
   cursor: pointer;
   border-radius: 15%;
-  transition: background-color 0.7s ease;
+  transition: background-color 0.3s ease;
   width: 150px;
 }
 
@@ -59,54 +60,71 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
-  padding: 6rem;
-  margin-top: -70px;
+  gap: 5rem;
+  padding: 1rem;
 }
 
 .no-music {
   color: white;
   text-align: center;
-  margin-top: 2rem;
+}
+
+.no-music img {
+  width: 200%;
+  max-width: 400px;
+  border-radius: 30%;
+  margin: 0 auto 1rem;
 }
 
 /* Responsive styles */
-@media (max-width: 501px) {
+@media (max-width: 768px) {
   .profile-row {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  .profile-details h4 {
-    font-size: 1.2rem;
-  }
-
   .profile-image {
-    width: 600px;
-    height: 600px;
+    width: 150px;
+    height: 150px;
   }
-}
 
-@media (max-width: 867px) {
+  .profile-username {
+    font-size: 1.5rem;
+  }
+
   .dropdown-container {
     flex-direction: column;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 1rem;
   }
 
   .dropdown-btn {
     width: 100%;
-    padding: 10px;
+  }
+
+  .music-wrapper {
+    padding: 1rem;
   }
 }
 
-@media (max-width: 405px) {
+@media (max-width: 480px) {
   .profile-image {
-    width: 600px;
-    height: 600px;
+    width: 120px;
+    height: 120px;
   }
 
-  .profile-details h4 {
-    font-size: 6rem;
+  .profile-username {
+    font-size: 1.2rem;
+  }
+
+  .dropdown-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .no-music img {
+    width: 100%;
+    max-width: 300px;
   }
 }
