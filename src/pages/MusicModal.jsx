@@ -1,24 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Modal } from 'react-bootstrap';
 import { FaPlay, FaPause, FaStepBackward, FaStepForward } from 'react-icons/fa';
 import { BASE_URL } from '../services/baseurl';
-import Modal from 'react-bootstrap/Modal';
 import Advertisments from './Advertisments';
 
 function MusicModal({ music }) {
-
   const [show, setShow] = useState(false);
-  const [audioEnded, setAudioEnded] = useState(false); // State to track if audio has ended
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  
+  const [audioEnded, setAudioEnded] = useState(false);
   const [audio] = useState(new Audio(`${BASE_URL}/uploads/${music.audio}`));
- 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
- 
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     if (isPlaying) {
@@ -26,21 +21,15 @@ function MusicModal({ music }) {
     } else {
       audio.pause();
     }
-  }, [isPlaying, audio]); 
+  }, [isPlaying, audio]);
 
   useEffect(() => {
-    const handleTimeUpdate = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
-    const handleLoadedMetadata = () => {
-      setDuration(audio.duration);
-    };
-
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const handleLoadedMetadata = () => setDuration(audio.duration);
     const handleSongEnd = () => {
       setCurrentTime(0);
       setIsPlaying(false);
-      setAudioEnded(true); // Set audioEnded state to true when audio ends
+      setAudioEnded(true);
     };
 
     audio.addEventListener('timeupdate', handleTimeUpdate);
@@ -54,15 +43,9 @@ function MusicModal({ music }) {
     };
   }, [audio]);
 
-  useEffect(() => {
-    // Set isPlaying to true when the component mounts to play audio automatically
-    setIsPlaying(true);
-  }, []);
+  useEffect(() => setIsPlaying(true), []);
 
-  const togglePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
-
+  const togglePlayPause = () => setIsPlaying(!isPlaying);
   const handleSeek = (e) => {
     const newTime = parseFloat(e.target.value);
     setCurrentTime(newTime);
@@ -77,70 +60,50 @@ function MusicModal({ music }) {
 
   return (
     <>
-      <Container fluid style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', marginLeft: "240px" }}>
-        <Row style={{ flexGrow: 1 }}>
-          <Col md={6} style={{ marginTop: "160px" }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Card style={{ width: '50%', textAlign: 'center', padding: '20px', boxShadow: '0 4px 8px 2px rgba(0, 0, 0, 0.2)', marginLeft: "200px" }}>
-              <Card.Img variant="top" src={`${BASE_URL}/uploads/${music.image}`} alt="Album Cover" style={{ width: '90%', margin: 'auto', marginBottom: '20px', height: '350px' }} />
-                <Card.Body style={{ position: 'relative' }}>
-                  <div style={{ position: 'relative', width: '100%', margin: 'auto' }}>
-                    <input
-                      value={currentTime}
-                      max={duration}
-                      onChange={handleSeek}
-                    
-                      type="range"
-                      style={{
-                        width: '100%',
-                        height: '8px',
-                        borderRadius: '5px',
-                        outline: 'none',
-                        backgroundColor: 'black',
-                        appearance: 'none',
-                        marginTop: '10px',
-                        cursor: 'pointer'
-                      }}
-                    />
-                    <div style={{ position: 'absolute', top: '-20px', right: '0', fontSize: '0.8em' }}>
-                      {formatTime(currentTime)}
-                    </div>
+      <Container fluid className="d-flex flex-column justify-content-center align-items-center mt-5">
+        <Row className="w-100 justify-content-center">
+          <Col xs={12} md={8} lg={6} className="text-center">
+            <Card className="shadow-sm mb-4">
+              <Card.Img
+                variant="top"
+                src={`${BASE_URL}/uploads/${music.image}`}
+                alt="Album Cover"
+                className="img-fluid"
+                style={{ maxHeight: '350px', objectFit: 'cover' }}
+              />
+              <Card.Body>
+                <div>
+                  <input
+                    value={currentTime}
+                    max={duration}
+                    onChange={handleSeek}
+                    type="range"
+                    className="w-100"
+                    style={{ height: '8px', borderRadius: '5px', outline: 'none', backgroundColor: '#ccc' }}
+                  />
+                  <div className="d-flex justify-content-between mt-2">
+                    <div>{formatTime(currentTime)}</div>
+                    <div>{formatTime(duration)}</div>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-                  <button  style={{ border: 'none', backgroundColor: 'black', marginRight: '10px' }}>
-                    <FaStepBackward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: 'black', cursor: "pointer" }} />
+                </div>
+                <div className="d-flex justify-content-center align-items-center mt-3">
+                  <button onClick={togglePlayPause} className="btn btn-link p-0 mr-3">
+                    <FaStepBackward size="1.5em" />
                   </button>
-                  <div
-                    onClick={togglePlayPause}
-                    style={{
-                      width: '60px',
-                      height: '60px',
-                      borderRadius: '50%',
-                      backgroundColor: 'black',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    {isPlaying ? (
-                      <FaPause style={{ fontSize: '2em', color: 'black' }} />
-                    ) : (
-                      <FaPlay style={{ fontSize: '2em', color: 'black' }} />
-                    )}
-                  </div>
-                  <button  style={{ border: 'none', backgroundColor: 'transparent', marginLeft: '10px' }}>
-                    <FaStepForward style={{ fontSize: '1.5em', borderRadius: '50%', backgroundColor: 'black', cursor: "pointer" }} />
+                  <button onClick={togglePlayPause} className="btn btn-primary rounded-circle p-3 mx-3">
+                    {isPlaying ? <FaPause size="1.5em" /> : <FaPlay size="1.5em" />}
                   </button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </div>
+                  <button onClick={togglePlayPause} className="btn btn-link p-0 ml-3">
+                    <FaStepForward size="1.5em" />
+                  </button>
+                </div>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>
-    
-      {audioEnded && <Advertisments music={music}/>} {/* Render Advertisments.jsx only when audio has ended */}
+
+      {audioEnded && <Advertisments music={music} />}
     </>
   );
 }

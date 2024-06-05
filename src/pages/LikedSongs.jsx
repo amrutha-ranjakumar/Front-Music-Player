@@ -27,7 +27,9 @@ function LikedSongs() {
 
   return (
     <>
+    <div style={{marginTop:"-50px"}}>
       <Header />
+      </div>
       <div className='mb-5 mt-5 p-5 ms-5'></div>
       <Link to='/home' style={{ textDecoration: "none", color: "white", fontSize: "20px", fontWeight: "600", marginLeft: "400px" }}>
         <i className="fa-solid fa-arrow-left "></i> Back To Home

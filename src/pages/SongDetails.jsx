@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, ListGroup, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import Header from '../components/Header';
 import Footer1 from '../components/Footer1';
@@ -19,121 +19,79 @@ function SongDetails({ music }) {
 
   return (
     <>
-      <Header />
-      <Container className=" "   >
-        <Row className="justify-content-center" >
-          <Col xs={8} className="text-center">
-            <h1 className="text-center " style={{ marginTop: "200px" }}   >
-              <span className="text-danger ">Song</span> Details
-            </h1>
+    <div style={{marginTop:"-10px"}}>
+    <Header  />
 
+    </div>
+      
+      <Container className="" >
+        <Row className="justify-content-center">
+          <Col xs={10} className="text-center">
+            <h1 className="text-center my-4 "  >
+              <span className="text-danger">Song</span> Details
+            </h1>
           </Col>
         </Row>
-
-
-
         {songDetailsItem?.length > 0 ? (
           songDetailsItem.map(item => (
-
-            <ListGroup key={item._id} className="mb-4"  >
-              <div style={{ marginLeft: "-500px" }}>
-                <MusicModal music={item} /></div>
-              <ListGroup.Item className="  text-center " style={{ marginLeft: "300px", marginTop: "-900px" }}>
-                <h4>{item.title}</h4>
-              </ListGroup.Item>
-              <ListGroup.Item className=" text-light text-center" style={{ marginLeft: "300px" }}>
-                <h5>Movie: <span className="text-warning">{item.movie}</span></h5>
-              </ListGroup.Item>
-              <ListGroup.Item className=" text-light text-center" style={{ marginLeft: "300px" }}>
-                <h5>Directed by: <span className="text-warning">{item.Directed}</span></h5>
-              </ListGroup.Item>
-              <ListGroup.Item className=" text-light text-center" style={{ marginLeft: "300px" }}>
-                <h5>Produced by: <span className="text-warning">{item.Producer}</span></h5>
-              </ListGroup.Item>
-              <ListGroup.Item className=" text-light text-center" style={{ marginLeft: "300px" }}>
-                <h5>Music by: <span className="text-warning">{item.Music}</span></h5>
-              </ListGroup.Item>
-              <ListGroup.Item className=" text-light text-center" style={{ marginLeft: "300px" }}>
-                <h5>Actors: <span className="text-warning">{item.Actors}</span></h5>
-              </ListGroup.Item>
-              <ListGroup.Item className=" text-light text-center" style={{ marginLeft: "300px" }}>
-                <Button variant="warning" onClick={() => handleShow(item.lyrics)}>
-                  Click here to see Lyrics
-                </Button>
+            <Card key={item._id} className="mb-4 shadow-sm" >
+              <Card.Header className="d-flex justify-content-center">
+                <MusicModal music={item} />
+              </Card.Header>
+              <Card.Body>
+                <Row>
+                  <Col xs={12} className="text-center mb-3">
+                    <h4>{item.title}</h4>
+                  </Col>
+                  <Col xs={12} md={6} className="mb-3 text-center">
+                    <h5>Movie: <span className="text-warning">{item.movie}</span></h5>
+                  </Col>
+                  <Col xs={12} md={6} className="mb-3 text-center">
+                    <h5>Directed by: <span className="text-warning">{item.Directed}</span></h5>
+                  </Col>
+                  <Col xs={12} md={6} className="mb-3 text-center">
+                    <h5>Produced by: <span className="text-warning">{item.Producer}</span></h5>
+                  </Col>
+                  <Col xs={12} md={6} className="mb-3 text-center">
+                    <h5>Music by: <span className="text-warning">{item.Music}</span></h5>
+                  </Col>
+                  <Col xs={12} className="mb-3 text-center">
+                    <h5>Actors: <span className="text-warning">{item.Actors}</span></h5>
+                  </Col>
+                  <Col xs={12} className="text-center">
+                    <Button variant="warning" onClick={() => handleShow(item.lyrics)}>
+                      Click here to see Lyrics
+                    </Button>
+                  </Col>
+                </Row>
                 <Review music={item} />
-              </ListGroup.Item>
-            </ListGroup>
-
-
+              </Card.Body>
+            </Card>
           ))
         ) : (
-          <div>
-            <img style={{ width: "400px", borderRadius: "30%", marginLeft: "200px" }} src="https://i.pinimg.com/564x/ea/37/ea/ea37ea689a2f2a928dd88026cebe8615.jpg" alt="" />
-            <p className="text-center">No song details found</p>
+          <div className="text-center">
+            <img
+              style={{ width: "100%", maxWidth: "400px", borderRadius: "30%" }}
+              src="https://i.pinimg.com/564x/ea/37/ea/ea37ea689a2f2a928dd88026cebe8615.jpg"
+              alt="No song details found"
+            />
+            <p>No song details found</p>
           </div>
         )}
-
       </Container>
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header
-          closeButton
-          style={{
-
-            borderBottom: 'none',
-            borderTopLeftRadius: '15px',
-            borderTopRightRadius: '15px',
-            padding: '1rem'
-          }}
-        >
-          <Modal.Title style={{ color: '#fff', fontWeight: '600', fontSize: '1.5rem' }}>Lyrics</Modal.Title>
+        <Modal.Header closeButton>
+          <Modal.Title>Lyrics</Modal.Title>
         </Modal.Header>
-        <Modal.Body
-          style={{
-            backgroundColor: 'white',
-            color: '#ddd',
-            padding: '1.5rem',
-            borderBottomLeftRadius: '15px',
-            borderBottomRightRadius: '15px',
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-            maxHeight: '500px',
-            overflowY: 'auto'
-
-          }}
-        >
-          <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'black' }}>
-            {selectedLyrics}
-          </div>
+        <Modal.Body style={{ whiteSpace: 'pre-wrap', lineHeight: '1.6', fontSize: '1rem', color: 'black' }}>
+          {selectedLyrics}
         </Modal.Body>
-        <Modal.Footer
-          style={{
-            backgroundColor: 'light-blue',
-            borderTop: 'none',
-            borderBottomLeftRadius: '15px',
-            borderBottomRightRadius: '15px',
-            padding: '1rem',
-            display: 'flex',
-            justifyContent: 'center'
-          }}
-        >
-          <Button
-            variant="outline-light"
-            onClick={handleClose}
-            style={{
-              borderRadius: '50px',
-              padding: '0.5rem 1.5rem',
-              fontSize: '2rem',
-              fontWeight: '500',
-              transition: 'all 0.3s ease',
-              color: 'black'
-            }}
-          >
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-
-
-
       <Footer1 />
     </>
   );

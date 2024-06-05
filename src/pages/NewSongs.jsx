@@ -38,11 +38,12 @@ function NewSongs() {
 
   return (
     <>
-      <Header />
-      {/* <link
-  rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-/> */}
+    <div style={{marginTop:"-10px"}}>
+
+    <Header />
+    </div>
+  
+     
 
 
       <div className="mb-5 p-5"></div>
